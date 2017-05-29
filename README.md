@@ -1,1 +1,1 @@
-Hello, this is my repo for machine learning. I will be documenting what I am learning right here. Once the topics become more advance or I start my own project I will create other repos. For now, this is where it begins.
+This is where I will place programs & notes to exemplify my understaing for certain machine learning concepts.
