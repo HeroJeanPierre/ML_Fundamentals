@@ -1,3 +1,8 @@
+# This simple program will be used to predict 10% out what Adj. Close will be
+# For GOOGL stock. The method that I will be usin is LinearRegression through
+# Sklearns linear model library.
+# Written by: Julien Jean-Pierre, from Sentex ML Tutorials
+
 import pandas as pd
 import quandl, math, datetime
 import numpy as np
@@ -6,9 +11,6 @@ import matplotlib.pyplot as plt
 from sklearn import preprocessing, cross_validation, svm
 from sklearn.linear_model import LinearRegression
 from matplotlib import style
-# This simple program will be used to predict 10% out what Adj. Close will be
-# For GOOGL stock. The method that I will be usin is LinearRegression through
-# Sklearns linear model library.
 
 # Use quandl's database to import the csv for GOOGL stock
 df = quandl.get('WIKI/GOOGL')
@@ -47,17 +49,20 @@ X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_
 clf = LinearRegression(n_jobs=-1)
 clf.fit(X_train, y_train)
 
+
 accuracy = clf.score(X_test, y_test)
 print('Running Linear Regression classifier...')
 print(colored('Accuracy is: {}'.format(accuracy), 'green'))
 
+# These are the predicted Adj. Close values
 forecast_set = clf.predict(X_lately)
-print(forecast_set, forecast_out)
+print(forecast_set, '\nDays:', forecast_out)
 
 # Now we will print the plot
 style.use('ggplot')
 df['Forecast'] = np.nan
 
+# Create a plot to reprisent the data
 last_data = df.iloc[-1].name
 last_unix = last_data.timestamp()
 one_day = 86400
@@ -73,9 +78,3 @@ plt.legend(loc=4)
 plt.xlabel('Date')
 plt.ylabel('Price')
 plt.show()
-
-
-
-
-
-                         
